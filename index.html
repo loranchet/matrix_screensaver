@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Matrix Effect</title>
+<style>
+  body, html {
+    height: 100%;
+    margin: 0;
+    overflow: hidden;
+    background: black;
+    font-family: 'Matrix Code', monospace;
+  }
+
+  .matrix-rain {
+    color: green;
+    font-size: 18px;
+    font-weight: bold; /* Make the text bold */
+    transform: translateX(-50%);
+    white-space: nowrap;
+    position: absolute;
+    writing-mode: vertical-rl;
+    text-orientation: upright;
+    white-space: nowrap;
+    top: -100%;
+  }
+
+  @keyframes matrixEffect {
+    to {
+      top: 100%;
+    }
+  }
+</style>
+</head>
+<body>
+
+<script>
+  // Function to create a single strip of Matrix rain
+  function createMatrixRain() {
+  const matrixRain = document.createElement('div');
+  matrixRain.classList.add('matrix-rain');
+
+  // Generate a random string of Japanese characters
+  const characters = 'コンピュータプログラムハッカーデータベースグラムハッカーデーグラムハッカーデーソフトウェア';
+  let randomString = '';
+  for (let i = 0; i < 50; i++) { // Change 50 to however long you want the string to be
+    randomString += characters.charAt(Math.floor(Math.random() * characters.length));
+  }
+  matrixRain.textContent = randomString;
+
+  matrixRain.style.left = Math.random() * window.innerWidth + 'px';
+  matrixRain.style.animation = `matrixEffect ${Math.random() * 10 + 5}s linear infinite`;
+  document.body.appendChild(matrixRain);
+
+
+
+    setTimeout(() => {
+      matrixRain.remove();
+    }, (Math.random() * 10 + 5) * 2000);
+  }
+
+  // Create multiple strips of Matrix rain
+  function createMatrixEffect() {
+    setInterval(createMatrixRain, 25);
+  }
+
+  // Start the Matrix effect
+  createMatrixEffect();
+</script>
+
+</body>
+</html>
